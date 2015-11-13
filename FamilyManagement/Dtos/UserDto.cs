@@ -12,26 +12,45 @@ namespace FamilyManagement.Dtos
     public class UserDto:DtoBase
     {
           [DataMember]
-         
+          
           public string LoginName { get; set; }
 
+           [DataMember]
           public string PassWord { get; set; }
 
+           [DataMember]
           public string UserName { get; set; }
 
+           [DataMember]
           public int Age { get; set; }
+           [DataMember]
           public int Sex { get; set; }
-
+           [DataMember]
           public string Phone { get; set; }
+           [DataMember]
           public DateTime CreateTime { get; set; }
+           [DataMember]
           public string PhotoUrl { get; set; }
+           [DataMember]
           public bool isadmin { get; set; }
+           [DataMember]
 
           public int Status { get; set; }
+           [DataMember]
 
           public string ImgUrl { get; set; }
+
+           [DataMember]
+           public string Address { get; set; }
+
+           [DataMember]
+           public string Email { get; set; }
+
     }
-      public static class UserDtoExtension
+
+   
+
+    public static class UserDtoExtension
       {
           /// <summary>
           /// 转换为实体
@@ -53,7 +72,10 @@ namespace FamilyManagement.Dtos
                   PhotoUrl = dto.PhotoUrl,
                   Isadmin = dto.isadmin,
                   Status=dto.Status,
-                  ImgUrl=dto.ImgUrl
+                  ImgUrl=dto.ImgUrl,
+                  Address=dto.Address,
+                  Email=dto.Email
+
               };
           }
 
@@ -77,7 +99,9 @@ namespace FamilyManagement.Dtos
                   UserName = entity.UserName,
                   isadmin = entity.Isadmin,
                   Status=entity.Status,
-                  ImgUrl=entity.ImgUrl
+                  ImgUrl=entity.ImgUrl,
+                  Address=entity.Address,
+                  Email=entity.Email
 
               };
           }

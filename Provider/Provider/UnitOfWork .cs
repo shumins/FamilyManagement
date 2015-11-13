@@ -6,18 +6,33 @@ using System.Threading.Tasks;
 using Provider.Util;
 using System.Data;
 using System.Data.Entity;
+using Provider.Model;
 
 
 namespace Provider.Provider
 {
-   public  class UnitOfWork:IUnitOfWork
+    public class UnitOfWork : DbContext,IUnitOfWork
     {
 
-       private AccountContext Content;
-       public UnitOfWork(AccountContext content)
-       {
-           this.Content = content;
-       }
+       //private AccountContext Content;
+       //public UnitOfWork(AccountContext content)
+       //{
+       //    this.Content = content;
+       //}
+        /// <summary>
+        /// 初始化Entity Framework工作单元
+        /// </summary>
+        /// <param name="connectionName">连接字符串的名称</param>
+      /// <summary>
+        /// Entity Framework工作单元
+        /// </summary>
+       public UnitOfWork()
+            : base("connectionName")
+        {
+        }
+        #region 实体集
+        public DbSet<User> UserRepo { get; set; }
+        #endregion
 
 
         /// <summary>
@@ -47,7 +62,7 @@ namespace Provider.Provider
 
            try
            {
-              Content.SaveChanges();
+               SaveChanges();
            }
            finally
            {

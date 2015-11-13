@@ -30,5 +30,7 @@ namespace FamilyManagement.Controllers
             var rep = new SuccessListResponse<List<UserDto>>(userList, pager);
             return rep;
         }
+
+
     }
 }

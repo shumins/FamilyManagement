@@ -41,9 +41,24 @@ namespace FamilyManagement.Services
             var query = from u in DiUserRepository.Find()
                         select new UserDto()
                         {   
-                            Id=u.Id,
-                            LoginName = u.LoginName
+
+                            UserName = u.UserName,
+                            Sex = u.Sex,
+                            Age = u.Age,
+                            Phone = u.Phone,
+                            CreateTime = u.CreateTime,
+                            Status = u.Status,
+                            ImgUrl = u.ImgUrl,
+                            isadmin = u.Isadmin,
+                            PassWord = u.PassWord,
+                            PhotoUrl=u.PhotoUrl,
+                            Id = u.Id,
+                            LoginName = u.LoginName,
+                            Address=u.Address,
+                            Email=u.Email
+
                         };
+            pager.TotalCount = query.Count();
           return  query.OrderByDescending(x => x.Id).Skip(pager.PageSize * (pager.Page - 1)).Take(pager.PageSize).ToList();
 
             // return DiUserRepository.Select<User>(pager.Page, pager.PageSize, out TotalCount, x => true, true, x => x).ToList();

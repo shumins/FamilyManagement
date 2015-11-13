@@ -20,11 +20,17 @@ namespace Provider.Provider
         //此处AccountContext是在Util层中在ADO.NET 实体模型加入的时候定义的Entity对应的Container,继承于DbContext
         //DbContext是EF下System.Data.Entity下  EntityState也是在EF的System.Data下
         private DbContext db;
+        protected UnitOfWork UnitOfWork { get; private set; }
 
-        public BaseRepository()
+
+        protected BaseRepository(UnitOfWork unitOfWork)
         {
-            db = new AccountContext();
+            UnitOfWork = unitOfWork;
+            //db = new AccountContext();
         }
+
+        
+
         //private IUnitOfWork _UnitOfWork;
         //private DbContext Content;
         //public BaseRepository(IUnitOfWork UnitOfWork)
@@ -40,10 +46,10 @@ namespace Provider.Provider
         {   
              
             //设置Entity的状态---Added
-            db.Entry<T>(entity).State = EntityState.Added;
-            
+            UnitOfWork.Entry<T>(entity).State = EntityState.Added;
+            UnitOfWork.SaveByStart();
             //保存修改
-            db.SaveChanges();
+           // db.SaveChanges();
 
             return entity;
         }
@@ -55,11 +61,11 @@ namespace Provider.Provider
         {
             //对上下文中的给定实体执行 CRUD 操作 
             //将给定实体EntityState.Unchanged 状态附加到上下文中
-            db.Set<T>().Attach(entity);
+            UnitOfWork.Set<T>().Attach(entity);
 
-            db.Entry<T>(entity).State = EntityState.Modified;
+            UnitOfWork.Entry<T>(entity).State = EntityState.Modified;
 
-            return db.SaveChanges() > 0;
+            return UnitOfWork.SaveChanges() > 0;
         }
 
         /// <summary>
@@ -69,11 +75,11 @@ namespace Provider.Provider
         {
             //对上下文中的给定实体执行 CRUD 操作 
             //将给定实体EntityState.Unchanged 状态附加到上下文中
-            db.Set<T>().Attach(entity);
+            UnitOfWork.Set<T>().Attach(entity);
 
-            db.Entry<T>(entity).State = EntityState.Deleted;
+            UnitOfWork.Entry<T>(entity).State = EntityState.Deleted;
 
-            return db.SaveChanges() > 0;
+            return UnitOfWork.SaveChanges() > 0;
         }
 
         /// <summary>
@@ -81,7 +87,7 @@ namespace Provider.Provider
         /// </summary>
         public IQueryable<T> Select(Func<T, bool> whereLambda)
         {
-            return db.Set<T>().Where<T>(whereLambda).AsQueryable();
+            return UnitOfWork.Set<T>().Where<T>(whereLambda).AsQueryable();
         }
 
         /// <summary>
@@ -117,7 +123,7 @@ namespace Provider.Provider
 
         public IQueryable<T> Find()
         {
-            return db.Set<T>();
+            return UnitOfWork.Set<T>();
         }
 
 

@@ -226,6 +226,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\all.css" />
     <Content Include="Content\css\H-ui.admin.css" />
     <Content Include="Content\css\H-ui.css" />
     <Content Include="Content\css\H-ui.login.css" />
@@ -287,6 +288,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\apps\admin\user\UserList.js" />
+    <Content Include="Scripts\apps\filters\commonFilter.js" />
+    <Content Include="Scripts\apps\filters\datetime.js" />
     <Content Include="Scripts\js\jquery-1.9.0.min.js" />
     <Content Include="Scripts\js\de_DE.txt" />
     <Content Include="Scripts\js\H-ui.admin.js" />
@@ -628,6 +631,8 @@
     <Content Include="Scripts\lib\nprogress\0.2.0\nprogress.js" />
     <Content Include="Scripts\lib\nprogress\0.2.0\nprogress.min.css" />
     <Content Include="Scripts\lib\nprogress\0.2.0\nprogress.min.js" />
+    <Content Include="Scripts\lib\paging\directive.js" />
+    <Content Include="Scripts\lib\paging\paging.html" />
     <Content Include="Scripts\lib\PIE-2.0beta1\PIE.htc" />
     <Content Include="Scripts\lib\PIE-2.0beta1\PIE_IE678.js" />
     <Content Include="Scripts\lib\PIE-2.0beta1\PIE_IE678_uncompressed.js" />

@@ -15,5 +15,12 @@ namespace Provider.Provider
      * */
    public class UserRepository : BaseRepository<User>,IUserRepository
     {
+       public UserRepository(UnitOfWork unitOfWork) 
+           : base(unitOfWork)
+       {
+           UnitOfWork = unitOfWork;
+       }
+
+       protected new UnitOfWork UnitOfWork { get; private set; }
     }
 }

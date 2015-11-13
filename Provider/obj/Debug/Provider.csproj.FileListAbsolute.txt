@@ -57,3 +57,4 @@ D:\项目相关\FamilyManagement\Provider\bin\Debug\zh-Hans\EntityFramework.reso
 D:\项目相关\FamilyManagement\Provider\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 D:\项目相关\FamilyManagement\Provider\obj\Debug\Provider.dll
 D:\项目相关\FamilyManagement\Provider\obj\Debug\Provider.pdb
+D:\项目相关\FamilyManagement\Provider\obj\Debug\Provider.csprojResolveAssemblyReference.cache

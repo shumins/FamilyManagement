@@ -35,5 +35,9 @@ namespace Provider.Model
         public int Status { get; set; }
 
         public string ImgUrl { get; set; }
+
+        public string Address { get; set; }
+
+        public string Email { get; set; }
     }
 }
