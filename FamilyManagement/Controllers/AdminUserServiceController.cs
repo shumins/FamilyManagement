@@ -50,7 +50,7 @@ namespace FamilyManagement.Controllers
         }
 
          [HttpPost]
-        public ActionResult  IsExistUserName()
+        public string  IsExistUserName()
         {
 
             return "y";
