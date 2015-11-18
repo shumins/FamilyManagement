@@ -15,7 +15,12 @@ namespace FamilyManagement.Services
         {
             DiUserRepository.Add(user);
         }
-
+        /// <summary>
+        /// 登陆
+        /// </summary>
+        /// <param name="loginName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public UserDto Login(string loginName, string password)
         {
            //UserRepository u = new UserRepository();
@@ -36,6 +41,11 @@ namespace FamilyManagement.Services
 
         }
 
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <param name="pager"></param>
+        /// <returns></returns>
         public List<UserDto> GetUserList(Pager pager)
         {
             var query = from u in DiUserRepository.Find()
@@ -63,5 +73,33 @@ namespace FamilyManagement.Services
 
             // return DiUserRepository.Select<User>(pager.Page, pager.PageSize, out TotalCount, x => true, true, x => x).ToList();
         }
+        /// <summary>
+        /// 修改状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        public void UpdateUserState(int id,int status)
+        {
+         var entity=DiUserRepository.Find().FirstOrDefault(x=>x.Id==id);
+             //用户名密码不存在
+            if (entity == null)
+            {
+                throw new Warning(10001);
+            }
+            entity.Status=status;
+            DiUserRepository.Update(entity);
+        }
+
+        /// <summary>
+        /// 判断用户是否存在
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="loginName"></param>
+        /// <returns></returns>
+        public bool IsExistUserName(string loginName)
+        {
+            return DiUserRepository.Exists(x => x.LoginName == loginName);
+        }
+        
     }
 }

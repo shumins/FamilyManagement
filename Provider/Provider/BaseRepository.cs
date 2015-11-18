@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Provider.Util;
+using System.Linq.Expressions;
 
 namespace Provider.Provider
 {
@@ -120,12 +121,21 @@ namespace Provider.Provider
             return temp.AsQueryable();
         }
 
-
+        /// <summary>
+        /// 查找实体
+        /// </summary>
         public IQueryable<T> Find()
         {
             return UnitOfWork.Set<T>();
         }
-
+        /// <summary>
+        /// 判断实体是否存在
+        /// </summary>
+        /// <param name="predicate">条件</param>
+        public bool Exists(Expression<Func<T, bool>> predicate)
+        {
+            return Find().Any(predicate);
+        }
 
     }
 }

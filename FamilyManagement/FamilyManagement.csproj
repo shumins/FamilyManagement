@@ -287,6 +287,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\apps\admin\user\UserEdit.js" />
     <Content Include="Scripts\apps\admin\user\UserList.js" />
     <Content Include="Scripts\apps\filters\commonFilter.js" />
     <Content Include="Scripts\apps\filters\datetime.js" />
@@ -1620,6 +1621,7 @@
     <Content Include="Views\Admin\Charts_LineChart.cshtml" />
     <Content Include="Scripts\lib\angular\angular1.3.14\angular.min.js.gzip" />
     <Content Include="Scripts\lib\angular\angular1.3.14\angular.min.js.map" />
+    <Content Include="Views\Admin\User_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Provider\Provider.csproj">

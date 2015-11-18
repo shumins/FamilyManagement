@@ -22,6 +22,12 @@ namespace FamilyManagement.Controllers
             return new SuccessResponse();
         }
 
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <param name="pageSize"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public BaseResponse GetUserList(int pageSize, int page = 1)
         {
@@ -30,6 +36,26 @@ namespace FamilyManagement.Controllers
             var rep = new SuccessListResponse<List<UserDto>>(userList, pager);
             return rep;
         }
+        /// <summary>
+        /// 修改用户状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public BaseResponse UpdateUserState(int id, int status)
+        {
+            DiUserService.UpdateUserState(id, status);
+            return new SuccessResponse();
+        }
+
+         [HttpPost]
+        public ActionResult  IsExistUserName()
+        {
+
+            return "y";
+        }
+       
 
 
     }

@@ -39,18 +39,39 @@
           }
           //第一次加载分页
           $scope.changePage(1);
-          $scope.member_stop = function (status, id) {
+          $scope.member_stop = function (status, id,obj) {
               if (status === 1) {
                   layer.confirm('确认要停用吗？', function (index) {
+                      $http({
+                          method: 'post',
+                          url: '/Api/AdminUser/UpdateUserState?id=' + id + '&status=0' 
+                      }).success(function (data) {
+                          if (data.State)
+                          {
+                              $scope.userList[obj.$index].status = 0;
+                              layer.msg('已停用!', { icon: 5, time: 1000 });
+                          }
+                      });
                   });
               } else if (status === 0) {
                   layer.confirm('确认要启用吗？', function (index) {
+                      $http({
+                          method: 'post',
+                          url: '/Api/AdminUser/UpdateUserState?id=' + id + '&status=1' 
+                      }).success(function (data) {
+                          if (data.State) {
+                              $scope.userList[obj.$index].status = 1;
+                              layer.msg('已启用!', { icon: 6, time: 1000 });
+                          }
+                      });
                   });
               }
 
               
 
           }
+
+
 
 
         }]);

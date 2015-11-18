@@ -28,6 +28,11 @@ namespace FamilyManagement.Controllers
         {
             return View();
         }
+
+        public ActionResult User_Edit(int id=0)
+        {
+            return View();
+        }
         #endregion
 
         #region Charts

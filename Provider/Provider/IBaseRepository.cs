@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,7 +41,15 @@ namespace Provider.Provider
         /// <param name="orderLambda">order条件表达式</param>
         IQueryable<T> Select<S>(int pageIndex, int pageSize, out int total, Func<T, bool> whereLambda, bool isAsc, Func<T, S> orderLambda);
 
-
+        /// <summary>
+        /// 查找实体
+        /// </summary>
         IQueryable<T> Find();
+
+        /// <summary>
+        /// 判断实体是否存在
+        /// </summary>
+        /// <param name="predicate">条件</param>
+        bool Exists(Expression<Func<T, bool>> predicate);
     }
 }
