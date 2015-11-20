@@ -54,7 +54,7 @@ namespace FamilyManagement.Models
         /// 返回类型
         /// </summary>
         [DataMember]
-        public T Data { get; set; }
+       public T Data { get; set; }
 
         [DataMember]
         public Pager Paper { get; set; }
@@ -123,6 +123,11 @@ namespace FamilyManagement.Models
         {
 
         }
+    }
+
+    public class zidingyi : BaseResponse
+    {
+
     }
 
 

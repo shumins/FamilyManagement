@@ -31,7 +31,7 @@
     <div class="pd-20" ng-controller="listform">
         <form method="post" ng-submit="submit()"  class="form form-horizontal" name="form-member" id="form-member-add">
             <div class="row cl">
-                <label class="form-label col-3"><span class="c-red">*</span>账号{{name}}：</label>
+                <label class="form-label col-3"><span class="c-red">*</span>账号：</label>
                 <div class="formControls col-5">
                     <input type="text" class="input-text" value="" placeholder="" ajaxurl="/Api/AdminUser/IsExistUserName" id="member-loginname" name="member-loginname" datatype="*2-16" nullmsg="账号不能为空">
                 </div>
@@ -131,8 +131,9 @@
                 increaseArea: '20%'
             });
 
-            $("#form-member-add").Validform({
+            $("#form-member-add").Validform( {
                 tiptype: 2,
+
                 //早上修改
                 //callback: function (form) {   
                 //    form[0].submit();

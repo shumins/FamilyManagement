@@ -3,16 +3,27 @@ using FamilyManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using FamilyManagement.Services;
 using FamilyManagement.Dtos;
 
 
 namespace FamilyManagement.Controllers
 {
-    public class AdminUserServiceController : BaseApiController
+    public class Ex
     {
+        public string info { get; set; }
+        public string status { get; set; }
+    }
+
+    public class AdminUserServiceController : BaseApiController
+    {  
+
+        
         // GET: AdminUserService
         [HttpPost]
         public BaseResponse Login(string loginName, string password)
@@ -50,11 +61,35 @@ namespace FamilyManagement.Controllers
         }
 
          [HttpPost]
-        public string  IsExistUserName()
-        {
+        public HttpResponseMessage IsExistUserName()
+         {
+             //webapi跟传统request的区别
+             HttpContextBase context = (HttpContextBase)Request.Properties["MS_HttpContext"];//获取传统context
+             HttpRequestBase request = context.Request;//定义传统request对象
+             string name = request["param"];
+             var falg= DiUserService.IsExistUserName(name);
+             if (falg)
+             {
+                 Ex i = new Ex {info = "账号已存在！", status = "n"};
+                 JavaScriptSerializer serializer = new JavaScriptSerializer();
+                 string str = serializer.Serialize(i);
+                 HttpResponseMessage result = new HttpResponseMessage
+                 {
+                     Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json")
+                 };
+                 return result;
+             }
+             else
+             {
+                 Ex i = new Ex { info = "验证通过！", status = "y" };
+                 JavaScriptSerializer serializer = new JavaScriptSerializer();
+                 string str = serializer.Serialize(i);
+                 HttpResponseMessage result = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+                 return result;
+             }
 
-            return "y";
-        }
+
+         }
        
 
 
