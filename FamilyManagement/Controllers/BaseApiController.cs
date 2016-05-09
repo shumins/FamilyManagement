@@ -12,6 +12,7 @@ using FamilyManagement.Security;
 namespace FamilyManagement.Controllers
 {
      [ApiExceptionFilter]
+     [AuthenticationApi]
     public class BaseApiController : ApiController
     {
         [Dependency]

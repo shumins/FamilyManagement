@@ -8,6 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using FamilyManagement.Security;
 using FamilyManagement.Services;
 using FamilyManagement.Dtos;
 
@@ -30,6 +31,11 @@ namespace FamilyManagement.Controllers
         {
            
             var user = DiUserService.Login(loginName, password);
+            Context.SetUser(new CurrentUser
+            {
+                UserId = user.Id,
+                LoginName = user.LoginName
+            });
             return new SuccessResponse();
         }
 
