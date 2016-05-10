@@ -12,5 +12,8 @@ namespace FamilyManagement.Services
     {
         [Dependency]
         public IUserRepository DiUserRepository { get; set; }
+
+        [Dependency]
+        public IUserTokenRepository DiUserTokenRepository { get; set; }
     }
 }

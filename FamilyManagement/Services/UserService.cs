@@ -100,6 +100,26 @@ namespace FamilyManagement.Services
         {
             return DiUserRepository.Exists(x => x.LoginName == loginName);
         }
+
+        /// <summary>
+        /// 创建用户令牌
+        /// 令牌有效期默认为7天
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="expireHours">7*24=168</param>
+        /// <returns></returns>
+        public string GenerateUserToken(long userId, int expireHours = 168)
+        {
+            UserToken ut = new UserToken()
+            {
+                LoginToken = Guid.NewGuid().ToString().Replace("-", ""),
+                ExpireTime = DateTime.Now.AddHours(expireHours),
+                UserId = userId
+            };
+
+            DiUserTokenRepository.Add(ut);
+            return ut.LoginToken;
+        }
         
     }
 }

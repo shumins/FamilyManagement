@@ -20,6 +20,7 @@ namespace Provider.Infra
 {
     public sealed class Bootstrapper
     {
+      
         public static IUnityContainer Initialise()
         {
             var container = BuildUnityContainer();
@@ -32,8 +33,9 @@ namespace Provider.Infra
         {
             var container = new UnityContainer();
             container.RegisterType<IUserRepository, UserRepository>();
-        
-            var a = container.Resolve<IUserRepository>();
+            container.RegisterType<IUserTokenRepository, UserTokenRepository>();
+            //var a = container.Resolve<IUserRepository>();
+            //var b = container.Resolve<IUserTokenRepository>();
             RegisterTypes(container);    
             return container;
         }

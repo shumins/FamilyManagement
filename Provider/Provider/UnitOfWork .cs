@@ -32,6 +32,10 @@ namespace Provider.Provider
         }
         #region 实体集
         public DbSet<User> UserRepo { get; set; }
+        /// <summary>
+        /// 用户登录令牌
+        /// </summary>
+        public DbSet<UserToken> UserTokenRepo { get; set; }
         #endregion
 
 

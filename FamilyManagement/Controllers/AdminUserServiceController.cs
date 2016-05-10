@@ -26,17 +26,23 @@ namespace FamilyManagement.Controllers
 
         
         // GET: AdminUserService
+        [AuthenticationApi(false)]
         [HttpPost]
         public BaseResponse Login(string loginName, string password)
         {
-           
+            var token = "";
             var user = DiUserService.Login(loginName, password);
             Context.SetUser(new CurrentUser
             {
                 UserId = user.Id,
                 LoginName = user.LoginName
             });
-            return new SuccessResponse();
+            //如果需要自动登录增加生成用户令牌的逻辑
+           token= DiUserService.GenerateUserToken(user.Id);
+            return new SuccessResponse(new
+            {
+                token = token
+            });
         }
 
         /// <summary>

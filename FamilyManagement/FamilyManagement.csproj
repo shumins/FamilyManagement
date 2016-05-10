@@ -219,6 +219,10 @@
     <Compile Include="Scripts\lib\ueditor\1.4.3\net\App_Code\PathFormater.cs" />
     <Compile Include="Scripts\lib\ueditor\1.4.3\net\App_Code\UploadHandler.cs" />
     <Compile Include="Security\ApiExceptionFilter.cs" />
+    <Compile Include="Security\Authentication.cs" />
+    <Compile Include="Security\AuthenticationApi.cs" />
+    <Compile Include="Security\Context.cs" />
+    <Compile Include="Security\CurrentUser.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\ServiceException.cs" />
     <Compile Include="Services\UserService.cs" />
