@@ -7,5 +7,6 @@ using Provider.Model;
 
 namespace Provider.Provider {
     public interface IUserTokenRepository : IBaseRepository<UserToken> {
+        string GetName();
     }
 }

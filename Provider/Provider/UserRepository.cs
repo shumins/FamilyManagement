@@ -22,5 +22,10 @@ namespace Provider.Provider
        }
 
        protected new UnitOfWork UnitOfWork { get; private set; }
-    }
+
+       public string GetName()
+       {
+           return "我是舒闵";
+       }
+   }
 }

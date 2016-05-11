@@ -32,10 +32,12 @@ namespace Provider.Infra
         private static IUnityContainer BuildUnityContainer()
         {
             var container = new UnityContainer();
+            #region 建立类型映射
             container.RegisterType<IUserRepository, UserRepository>();
             container.RegisterType<IUserTokenRepository, UserTokenRepository>();
-            //var a = container.Resolve<IUserRepository>();
-            //var b = container.Resolve<IUserTokenRepository>();
+            #endregion
+           // var a = container.Resolve<IUserRepository>();
+            
             RegisterTypes(container);    
             return container;
         }

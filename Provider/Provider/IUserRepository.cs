@@ -10,6 +10,6 @@ namespace Provider.Provider
 {
     public interface IUserRepository:IBaseRepository<User>
     {
-
+        string GetName();
     }
 }
