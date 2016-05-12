@@ -27,6 +27,6 @@ namespace Provider.Model {
         /// <summary>
         /// 对应用户编号
         /// </summary>
-        public long UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

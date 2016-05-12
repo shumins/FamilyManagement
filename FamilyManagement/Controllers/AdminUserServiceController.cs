@@ -28,7 +28,7 @@ namespace FamilyManagement.Controllers
         // GET: AdminUserService
         [AuthenticationApi(false)]
         [HttpPost]
-        public BaseResponse Login(string loginName, string password)
+        public BaseResponse Login(string loginName, string password, bool rememberMe)
         {
             var token = "";
             var user = DiUserService.Login(loginName, password);
@@ -38,7 +38,15 @@ namespace FamilyManagement.Controllers
                 LoginName = user.LoginName
             });
             //如果需要自动登录增加生成用户令牌的逻辑
-           token= DiUserService.GenerateUserToken(user.Id);
+            if (rememberMe)
+            {
+                token = DiUserService.GenerateUserToken(user.Id);
+            }
+            else
+            {
+            
+            }
+         
             return new SuccessResponse(new
             {
                 token = token

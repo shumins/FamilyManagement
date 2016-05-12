@@ -128,6 +128,15 @@ namespace Provider.Provider
         {
             return UnitOfWork.Set<T>();
         }
+
+        /// <summary>
+        /// 查找实体
+        /// </summary>
+         public T Find(params object[] id)
+        {
+            return UnitOfWork.Set<T>().Find(id);
+        }
+
         /// <summary>
         /// 判断实体是否存在
         /// </summary>
@@ -137,5 +146,8 @@ namespace Provider.Provider
             return Find().Any(predicate);
         }
 
+
+
+       
     }
 }

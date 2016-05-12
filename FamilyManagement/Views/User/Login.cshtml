@@ -4,6 +4,7 @@
 <head>
     <title>大气简洁后台登录模板下载 </title>
     <script src="@Url.Content("/Scripts/js/jquery-1.9.0.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("/Scripts/js/jquery.cookie.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("/Scripts/js/login.js")" type="text/javascript"></script>
     <link href="@Url.Content("/Content/css/login2.css")" rel="stylesheet" type="text/css" />
 
@@ -24,7 +25,7 @@
         </div>
 
 
-        <div class="qlogin" id="web_qr_login" style="display: block; height: 235px;">
+        <div class="qlogin" id="web_qr_login" style="display: block; height: 260px;">
 
             <!--登录-->
             <div class="web_login" id="web_login">
@@ -52,6 +53,7 @@
                                     <input type="password" id="p" name="p" class="inputstyle" />
                                 </div>
                             </div>
+                            <input value="" type="checkbox" id="rememberMe" />自动登录
 
                             <div style="padding-left:50px;margin-top:20px;"><input type="button" id="btnLogin" value="登 录" style="width:150px;" class="button_blue" /></div>
 

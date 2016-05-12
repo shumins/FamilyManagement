@@ -71,7 +71,7 @@ namespace FamilyManagement.Dtos
                   UserName = dto.UserName,
                   PhotoUrl = dto.PhotoUrl,
                   Isadmin = dto.isadmin,
-                  Status=dto.Status,
+                  Status=(UserState)dto.Status,
                   ImgUrl=dto.ImgUrl,
                   Address=dto.Address,
                   Email=dto.Email
@@ -98,7 +98,7 @@ namespace FamilyManagement.Dtos
                   PhotoUrl = entity.Phone,
                   UserName = entity.UserName,
                   isadmin = entity.Isadmin,
-                  Status=entity.Status,
+                  Status=(int)entity.Status,
                   ImgUrl=entity.ImgUrl,
                   Address=entity.Address,
                   Email=entity.Email

@@ -13,6 +13,15 @@ namespace Provider.Model
         Female = 1,
     }
 
+    public enum UserState
+    {
+        //冻结
+        Frozen = 0,
+        //正常
+        Normal = 1,
+       
+    }
+
 
     [Table("user")]
     public class User
@@ -32,7 +41,7 @@ namespace Provider.Model
         public string PhotoUrl { get; set; }
         public bool Isadmin { get; set; }
 
-        public int Status { get; set; }
+        public UserState Status { get; set; }
 
         public string ImgUrl { get; set; }
 

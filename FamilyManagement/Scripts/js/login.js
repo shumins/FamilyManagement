@@ -59,24 +59,29 @@ var reMethod = "GET",
 
 $(document).ready(function () {
     //登陆
-    $("#btnLogin").click(function () {
+    $("#btnLogin").click(function() {
         $.ajax({
             type: "post",
-            url: "/Api/AdminUser/Login?loginName=" + $("#u").val() + "&password=" + $("#p").val(),
+            url: "/Api/AdminUser/Login?loginName=" + $("#u").val() + "&password=" + $("#p").val() + "&rememberMe=" + $("#rememberMe").is(':checked'),
             //url: "User/Login?loginName=" + $("#u").val() + "&password=" + $("#p").val(),
             //data: { loginName: $("#u").val(), password: $("#p").val() },
-            success: function (msg) {
+            success: function(msg) {
                 if (msg.State == 1) {
+                    //主动清除cookie记录
+                    $.removeCookie('tokenKey', { path: '/' });
+                    //记住我时加入cookie记录
+                    if ($("#rememberMe").is(':checked')) {
+                        $.cookie('tokenKey', msg.Data.token, { expires: 30, path: '/' });
+                    }
                     window.location = "/Admin/Left";
-
                 } else {
-                    $('#userCue').html("<font color='red'><b>用户名密码错误！</b></font>");
+                    $('#userCue').html("<font color='red'><b>" + msg.Message + "！</b></font>");
                 }
             }
         });
 
 
-    })
+    });
     
     
 

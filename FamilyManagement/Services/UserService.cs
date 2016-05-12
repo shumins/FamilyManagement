@@ -57,7 +57,7 @@ namespace FamilyManagement.Services
                             Age = u.Age,
                             Phone = u.Phone,
                             CreateTime = u.CreateTime,
-                            Status = u.Status,
+                            Status = (int)u.Status,
                             ImgUrl = u.ImgUrl,
                             isadmin = u.Isadmin,
                             PassWord = u.PassWord,
@@ -86,7 +86,7 @@ namespace FamilyManagement.Services
             {
                 throw new Warning(10001);
             }
-            entity.Status=status;
+            entity.Status = (UserState)status;
             DiUserRepository.Update(entity);
         }
 
@@ -101,6 +101,29 @@ namespace FamilyManagement.Services
             return DiUserRepository.Exists(x => x.LoginName == loginName);
         }
 
+        #region 用户令牌相关
+
+        public UserDto LoginByToken(string token)
+        {
+            var ut = DiUserTokenRepository.Find().FirstOrDefault(tut => tut.LoginToken == token);
+            //用户令牌不存在
+            if (ut == null)
+                return null;
+            //用户令牌已过期
+            if (ut.ExpireTime < DateTime.Now)
+                return null;
+            var user = DiUserRepository.Find(ut.UserId);
+            //用户已不存在
+            if (user == null)
+                throw new Warning(2002);
+
+            //用户被冻结
+            if (user.Status == UserState.Frozen)
+                throw new Warning(1004);
+            return user.ToDto();
+
+        }
+
         /// <summary>
         /// 创建用户令牌
         /// 令牌有效期默认为7天
@@ -108,7 +131,7 @@ namespace FamilyManagement.Services
         /// <param name="userId"></param>
         /// <param name="expireHours">7*24=168</param>
         /// <returns></returns>
-        public string GenerateUserToken(long userId, int expireHours = 168)
+        public string GenerateUserToken(int userId, int expireHours = 168)
         {
             UserToken ut = new UserToken()
             {
@@ -120,6 +143,17 @@ namespace FamilyManagement.Services
             DiUserTokenRepository.Add(ut);
             return ut.LoginToken;
         }
-        
+
+        /// <summary>
+        /// 移除令牌
+        /// </summary>
+        /// <param name="token"></param>
+        public void RemoveUserToken(string token) {
+            var ut = DiUserTokenRepository.Find().SingleOrDefault(tut => tut.LoginToken == token);
+            if (ut != null) DiUserTokenRepository.Delete(ut);
+        }
+        #endregion
+
+
     }
 }

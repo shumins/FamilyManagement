@@ -46,6 +46,9 @@ namespace Provider.Provider
         /// </summary>
         IQueryable<T> Find();
 
+
+        T Find(params object[] id);
+
         /// <summary>
         /// 判断实体是否存在
         /// </summary>
