@@ -13,7 +13,7 @@ namespace Provider.Provider
      *  Author  : Arealty
      *  Function: 基类仓储
      *  Date    : 2015-08-19    
-     *  Source  : http://www.cnblogs.com/shumin/
+     *  Source  : http://www.cnblogs.com/shumin//
      * */
     public class BaseRepository<T>:IBaseRepository<T>where T:class
     {
