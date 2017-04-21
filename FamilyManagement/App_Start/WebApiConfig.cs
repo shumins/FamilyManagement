@@ -37,6 +37,8 @@ namespace FamilyManagement
                 defaults: new { id = RouteParameter.Optional }
                 ).RouteHandler = new SessionStateRouteHandler();
             //config.Routes.
+            config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+            config.Formatters.JsonFormatter.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
         }
 
         public class SessionableControlHandler : HttpControllerHandler, IRequiresSessionState
